@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+.formMainDiv{margin-left: 600px; width: 600px; margin-top: 100px;height:auto;}
+.formChildDiv{margin-top: 10px; margin-bottom: 10px; margin-left: 5px; height: 40px;}
+.formChildDiv div{float:left;width:100px;}
+.formChildDiv span{margin-top: 5px;float:right;height:32px;width:auto;}
+.formChildDiv input{height: 30px; width: 200px;}
+
+.formButDiv2{margin-top: 15px; margin-bottom: 10px; margin-left: 5px; height: 40px;}
+.formButDiv2 div{margin-left: 30px;width:200px;}
+.formButDiv2 input{float:right;width:80px;height:30px;}
