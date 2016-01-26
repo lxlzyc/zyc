@@ -1,4 +1,4 @@
-package com.lxl.DBbase;
+package com.lxl.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

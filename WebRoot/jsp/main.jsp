@@ -55,6 +55,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		xmlHttp.onreadystatechange = ajaxFunBack;
  		xmlHttp.send(null);
   	}
-  	function ajaxFunBack
   </script>
 </html>
