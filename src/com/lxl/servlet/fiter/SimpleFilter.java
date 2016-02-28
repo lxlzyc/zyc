@@ -11,13 +11,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 /**
- * ¼òµ¥¹ýÂËÆ÷
+ * ï¿½òµ¥¹ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author lxl
  *
  */
 public class SimpleFilter implements Filter {
 	/**
-	 * ³õÊ¼»¯
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½
 	 */
 	private String charSet;
 	public void init(FilterConfig config) throws ServletException {
@@ -25,7 +25,7 @@ public class SimpleFilter implements Filter {
 		this.charSet = config.getInitParameter("charset");
 	}
 	/**
-	 * Ïú»Ù
+	 * ï¿½ï¿½ï¿½
 	 */
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -33,21 +33,22 @@ public class SimpleFilter implements Filter {
 	}
 
 	/**
-	 * Ö´ÐÐ¹ýÂËÆ÷
+	 * Ö´ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		//ÉèÖÃÍ³Ò»×Ö·û¼¯
+		//ï¿½ï¿½ï¿½ï¿½Í³Ò»ï¿½Ö·ï¿½
 		request.setCharacterEncoding(this.charSet);
-		HttpServletRequest req = (HttpServletRequest) request; //ÏòÏÂ×ªÐÍ
+		HttpServletRequest req = (HttpServletRequest) request; //ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
 		HttpSession ses = req.getSession();
-		//ÅÐ¶ÏÓÃ»§ÊÇ·ñµÇÂ¼
+		//ï¿½Ð¶ï¿½ï¿½Ã»ï¿½ï¿½Ç·ï¿½ï¿½Â¼
 		if(ses.getAttribute("username") != null){
 			chain.doFilter(request, response);
 		}else{
+			System.out.println("è¿‡æ»¤");
 //			chain.doFilter(request, response);
-			//ÇëÇó×ª·¢ ×¢ÒâÂ·¾¶¼Ó  /
+			//ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ ×¢ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½  /
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		

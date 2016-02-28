@@ -1,4 +1,6 @@
-#Tue Nov 24 22:19:42 GMT+08:00 2015
 eclipse.preferences.version=1
 encoding//WebRoot/index.jsp=UTF-8
+encoding//WebRoot/login.jsp=UTF-8
+encoding//src/com/lxl/servlet/BaseServletT.java=UTF-8
+encoding//src/com/lxl/servlet/LoginServlet.java=UTF-8
 encoding/<project>=UTF-8

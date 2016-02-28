@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="loginbox">            
-            <form id="loginform" method="post" class="form-vertical" action="/zyc/haha/Login" >
+            <form id="loginform" method="post" class="form-vertical" action="loginServlet" onsubmit="loginFormPost(this);">
 				 <div class="control-group normal_text"> <h3><img src="img/logo.png" alt="Logo" /></h3></div>
                 <div class="control-group">
                     <div class="controls">

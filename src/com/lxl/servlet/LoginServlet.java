@@ -14,13 +14,13 @@ import com.lxl.database.DatabaseConnection;
 
 public class LoginServlet extends HttpServlet  {
 	/**
-	 * ³õÊ¼»¯servlet
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½servlet
 	 */
 	public void init() throws ServletException{
 		
 	}
 	/**
-	 * ´¦ÀígetÌá½»µÄÊý¾Ý
+	 * ï¿½ï¿½ï¿½ï¿½getï¿½á½»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void doGet(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
 		
@@ -28,20 +28,24 @@ public class LoginServlet extends HttpServlet  {
 		
 	}
 	/**
-	 * ´¦ÀípostÌá½»µÄÊý¾Ý
+	 * ï¿½ï¿½ï¿½ï¿½postï¿½á½»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void doPost(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
 		
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		//´æÈësession
+		
+		
+		System.out.println("username"+username);
+		//ï¿½ï¿½ï¿½ï¿½session
 		HttpSession ses = req.getSession();
 		ses.setAttribute("username", username);
+		System.out.println("sessionçš„value"+ses.getAttribute("username"));
 		ses.setAttribute("password", password);
 		resp.sendRedirect("jsp/main.jsp");
 	}
 	/**
-	 * Ïú»Ùservlet
+	 * ï¿½ï¿½ï¿½servlet
 	 */
 	public void destroy(){
 		

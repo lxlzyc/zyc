@@ -6,18 +6,27 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html  lang="zh-CN">
   <head>
-    <base href="<%=basePath%>">
+  <base href="<%=basePath%>">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-theme.css" rel="stylesheet" media="screen">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../docs-assets/js/html5shiv.js"></script>
+      <script src="../../docs-assets/js/respond.min.js"></script>
+    <![endif]-->
+ 
     
-    <title>My JSP 'login.jsp' starting page</title>
+    <title>登录</title>
     
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
 	<!--
 	<script type="text/javascript" src="js/jsKJ/jquery-1.7.2.js"></script>
 	-->
@@ -27,46 +36,174 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  
-  <body>
-    <div class="loginMaindiv">
-    	<form name="submitForm" method="post" action="loginServlet" onsubmit="loginFormPost(this);">
-    		<div class="loginInputdiv">
-    		<div class="loginInputLidiv"><span>登录名:</span><input type="text" size="18" id="username" name="username" placeholder="请输入登录名"></input></div>		
-    		<div class="loginInputLidiv"><span>密码:</span><input type="password" size="18" id="password" name="password" placeholder="请输入密码"></input></div>
-    		</div>
-    		<div class="loginBtndiv">
-    		<input type="button" id="submitbtn" name="submitbtn" value="登录"  onclick="loginFormPost(this.form)"></input>   		
-    		<input type="reset" id="resetbtn" name="resetbtn" value="重置"></input>
-    		</div>
-    		<div class="loginSpandiv">
-    		<a href="jsp/getPassword.jsp">忘记密码？</a>
-    		</div>
-    	</form>
-    </div>
-  </body>
-  <script type="text/javascript">
-  	function loginFormPost(form){
-  	
-  		var username = form.username.value;
-  		var password = form.password.value;
-  		if(username == ""){
-  			alert("请输入用户名");
-  			return false;
-  		}
-  		if(username.length < 4){
-  			alert("请输入正确的用户名");
-  			return false;
-  		}
-  		if(password == ""){
-  			alert("请输入密码");
-  			return false;
-  		}
-  		if(password.length < 6){
-  			alert("请输入正确的密码");
-  			return false;
-  		}
-  		document.submitForm.submit();
-  	}
-  </script>
+
+<body>
+	<div class="container">
+		<div class="loginMaindiv">
+			<div class="formdiv">
+			<form class="form-horizontal" id="loginform" method="post" action="TestBaseServlet">
+				<div class="form-group">
+					<label for="username" class="col-sm-3 control-label">用户名</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="username" name="username"
+							placeholder="请输入登录名" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-3 control-label">密码</label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" id="password" name="password"
+							placeholder="请输入密码" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-10">
+						<div class="checkbox">
+							<label> <input type="checkbox" />记住我 </label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="mainbutton">
+						<button type="submit" class="btn btn-primary btn-sm" >提交</button>
+						<button type="reset" class="btn btn-warning btn-sm">重置</button>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="hrefRight">
+						<button type="button" class="btn btn-link btn-sm">忘记密码？</button>
+						<button type="button" class="btn btn-link btn-sm" onclick="registerFun();">注册</button>
+					</div>
+				</div>
+			</form>
+			<form class="form-horizontal csshide" id="registerform">
+				<div class="form-group">
+					<h3 class="h3">欢迎注册</h3>
+				</div>
+				<div class="form-group">
+					<label for="newusername" class="col-sm-3 control-label">用户名</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="newusername" name="newusername"
+							placeholder="请输入登录名" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="newemail" class="col-sm-3 control-label">邮箱</label>
+					<div class="col-sm-8">
+						<input type="email" class="form-control" id="newemail" name="newemail"
+							placeholder="请输入邮箱" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="newsex" class="col-sm-3 control-label">性别</label>
+					<div class="col-sm-8">
+						<div class="radio">
+  							<label>
+    							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >  男
+ 							</label>
+  							<label>
+    							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >  女  
+  							</label>
+						</div>
+						<div class="radio">
+  							<label>
+    							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked> 中性
+  							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="newlove" class="col-sm-3 control-label">爱好</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="newlove"
+							placeholder="请输入邮箱" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="newpassword" class="col-sm-3 control-label">密码</label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" id="newpassword" name="newpassword"
+							placeholder="请输入密码" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="repassword" class="col-sm-3 control-label">确认密码</label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" id="repassword" name="repassword"
+							placeholder="请输入确认密码" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="mainbutton">
+						<button type="submit" class="btn btn-primary btn-sm">注册</button>
+						<button type="reset" class="btn btn-warning btn-sm">重置</button>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="hrefRight">
+						<button type="button" class="btn btn-link btn-sm" onclick="returnFun();">返回</button>
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</body>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$("input").focusout(function(){
+	
+		var value=$(this).val().trim();
+		if(!value){
+			$(this).parent().addClass("has-error");
+			return false;
+		}
+		var type=$(this).attr("type");
+		if(type == "email"){
+			var reg =/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;			
+			if(!reg.test(value)){
+				$(this).parent().removeClass("has-error").addClass("has-warning");
+			}else{
+				$(this).parent().removeClass("has-error").removeClass("has-warning");
+			}
+		}
+	});
+	function registerFun(){
+		$("#loginform").slideUp();
+		$("#registerform").fadeIn();
+		$("input").val("");
+	}
+	function returnFun(){
+		$("#registerform").slideUp();
+		$("#loginform").fadeIn();
+	}
+	function loginFormPost(form) {
+
+		var username = form.username.value;
+		var password = form.password.value;
+		if (username == "") {
+			alert("请输入用户名");
+			return false;
+		}
+		if (username.length < 4) {
+			alert("请输入正确的用户名");
+			return false;
+		}
+		if (password == "") {
+			alert("请输入密码");
+			return false;
+		}
+		if (password.length < 6) {
+			alert("请输入正确的密码");
+			return false;
+		}
+		return true;
+	}
+</script>
+
 </html>
