@@ -1,3 +1,4 @@
+<%@page import="com.lxl.vo.Userlogin"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--<%@ page erroePage="jsp/error.jsp" %> 错误页处理 --%>
 
@@ -25,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <![endif]-->
  
     
-    <title>失败</title>
+    <title>成功</title>
     
 	<!--
 	<script type="text/javascript" src="js/jsKJ/jquery-1.7.2.js"></script>
@@ -38,7 +39,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 
 <body>
-	登录成功
+	<% Userlogin ul = (Userlogin)session.getAttribute("userlogin"); %>
+	登录成功! 欢迎您<%=ul.getUsername() %>
 </body>
  
 </html>

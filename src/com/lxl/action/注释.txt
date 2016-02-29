@@ -1,0 +1,31 @@
+过滤器
+Servlet中的过滤器Filter是实现了javax.servlet.Filter接口的服务器端程序，主要的用途是过滤字符编码、
+做一些业务逻辑判断等。其工作原理是，只要你在web.xml文件配置好要拦截的客户端请求，它都会帮你拦截到请求，此时你就
+可以对请求或响应(Request、Response)统一设置编码，简化操作；同时还可进行逻辑判断，如用户是否已经登陆、有没
+有权限访问该页面等等工作。它是随你的web应用启动而启动的，只初始化一次，以后就可以拦截相关请求，只有当你的web应用
+停止或重新部署的时候才销毁
+
+进入类中特定方法
+配置action中method方法
+
+<action name="login" class="com.lxl.action.LoginAction" method="add">
+	<result name="success">/success.jsp</result>
+	<result name="fail">/fail.jsp</result>
+</action>
+调用action中add方法
+/login!add.do
+
+通配符   method="{*}"  全部方法
+*全匹配  {1} 代表第几个*
+<action name="*Action" class="com.lxl.action.{1}Action" method="{*}">
+	<result name="success">/success.jsp</result>
+	<result name="fail">/fail.jsp</result>
+</action>
+此时使用类名加方法名访问相关类和方法
+LoginAction!add.do
+
+
+普通通用  全部使用通配符  不利于后期维护
+<action name="*_*" class="com.lxl.action.{1}Action" method="{2}">
+	<result name="{1}_{2}">/{1}_{2}.jsp</result>
+</action>

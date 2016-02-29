@@ -27,17 +27,49 @@
 		extends:继承哪个包 会继承该包下配置信息和拦截器等等
 		namespace:选填 url连接必须加入/new/action.xxx
 	-->
+	
+	
 	<package name="test" namespace="/new" extends="struts-default">
+		<!-- 拦截器配置 -->
+		<interceptors>
+			<interceptor name="firstInterceptor" class="com.lxl.struts2Interceptor.FirstInterceptor">
+				<!-- 初始化拦截器中参数  可不写  name对应参数名 -->
+				<param name="loginName">admin</param>
+			</interceptor>
+			<!-- 类拦截器 -->
+			<interceptor name="methodInterceptor" class="com.lxl.struts2Interceptor.MethodInterceptor">
+				<!-- 拦截的方法名 -->
+				<param name="includeMethods">add,delete</param>
+				<!-- 不拦截的方法名 -->
+				<param name="excludeMethods">add,delete</param>
+			</interceptor>
+			<!-- 拦截器栈队集合 -->
+			<interceptor-stack name="allInterceptor">
+				<interceptor-ref name="firstInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 为所有类都添加拦截器 -->
+		<default-interceptor-ref name="allInterceptor"></default-interceptor-ref>
+		<!-- 全局的结果处理 -->
+		<global-results>
+			<result name="error">/jsp/error.jsp</result>
+		</global-results>
 		<!-- action相当于以前的servlet 
 			localhost:8080/项目名/new/login.do
 		-->
 		<action name="login" class="com.lxl.action.LoginAction" >
 			<!-- 设置访问action后跳转路径（action中return的值是result中的name） -->
+			<!-- 给此action添加拦截器  必须添加defaultStack拦截器（默认） -->
+			<interceptor-ref name="firstInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success">/success.jsp</result>
 			<result name="fail">/fail.jsp</result>
 		</action>
 		<action name="mlogin" class="com.lxl.action.MloginAction" >
 			<!-- 设置访问action后跳转路径（action中return的值是result中的name） -->
+			<!-- 拦截器栈队集合添加拦截器 -->
+			<interceptor-ref name="allInterceptor"></interceptor-ref>
 			<result name="success">/success.jsp</result>
 			<!-- 模型封装拦截器(运行action前运行) -->
 			<interceptor-ref name="modelDriven"></interceptor-ref>
@@ -53,6 +85,10 @@
 			<!-- 默认拦截器 -->
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			
+		</action>
+		<!-- 使用通配符解决调用方法问题  *指代全部方法 -->
+		<action name="wildcardMethodAction" class="com.lxl.action.WildcardMethodAction" method="{*}">
+			<result name="success">/success.jsp</result>
 		</action>
 	</package>
 	

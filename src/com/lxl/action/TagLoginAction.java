@@ -9,7 +9,7 @@ public class TagLoginAction  extends ActionSupport{
 	
 	public String execute() throws Exception{
 		System.out.println(us.getUsername());
-		return "/success.jsp";
+		return "success";
 	}
 	
 	public Userlogin getUs() {

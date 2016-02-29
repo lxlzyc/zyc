@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="container">
 		<div class="loginMaindiv">
 			<div class="formdiv">
-			<form class="form-horizontal" id="loginform" method="post" action="TestBaseServlet">
+			<form class="form-horizontal" id="loginform" method="post" action="<%=path%>/new/login.do">
 				<div class="form-group">
 					<label for="username" class="col-sm-3 control-label">用户名</label>
 					<div class="col-sm-8">

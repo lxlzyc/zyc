@@ -85,7 +85,7 @@
 					</div>
 				</form>
 				<!-- 使用标签时不用写path -->
-				<s:form   namespace="" action="/new/taglogin.do" method="post">
+				<s:form   namespace="/new" action="taglogin" method="post">
 					<!-- 尽量别分开 标签-->
 					<s:textfield name = "us.username"/>用户名
 					<s:password name = "us.userpassword"/>密码
