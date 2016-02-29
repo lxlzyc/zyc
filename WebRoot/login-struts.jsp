@@ -84,7 +84,7 @@
 						</div>
 					</div>
 				</form>
-				<!-- 使用标签时不用写path -->
+				<!-- 使用标签时不用写path---国际化 -->
 				<s:form   namespace="/new" action="taglogin" method="post">
 					<!-- 尽量别分开 标签-->
 					<s:textfield name = "us.username"/>用户名

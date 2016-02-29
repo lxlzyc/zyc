@@ -2,6 +2,8 @@
 <!-- 提示用dtd -->
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	<!-- 国际化（语言切换） -->
+	<constant name="struts.custom.i18n.resources" value="message"/>
 	<!-- 该标签用于创建一个javabean实例 <bean class=""></bean>-->
 	
 	
@@ -27,7 +29,19 @@
 		extends:继承哪个包 会继承该包下配置信息和拦截器等等
 		namespace:选填 url连接必须加入/new/action.xxx
 	-->
-	
+	<package name="test2" extends="struts-default">
+			<!-- 国际化 -->
+		<action name="changeI18NAction" class="com.lxl.action.ChangeI18NAction">
+			<result name="success">/login-i18n.jsp</result>
+		</action>
+		<!-- token令牌 -->
+		<action name="tokenAction" class="com.lxl.action.TokenAction">
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/success.jsp</result>
+			<result name="invalid.token">/token.jsp</result>
+		</action>
+	</package>	
 	
 	<package name="test" namespace="/new" extends="struts-default">
 		<!-- 拦截器配置 -->
@@ -90,6 +104,7 @@
 		<action name="wildcardMethodAction" class="com.lxl.action.WildcardMethodAction" method="{*}">
 			<result name="success">/success.jsp</result>
 		</action>
+
 	</package>
 	
 	
