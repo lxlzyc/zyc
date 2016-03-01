@@ -8,6 +8,7 @@ public class TagLoginAction  extends ActionSupport{
 	private Userlogin us;
 	
 	public String execute() throws Exception{
+		System.out.println("1223");
 		System.out.println(us.getUsername());
 		return "success";
 	}

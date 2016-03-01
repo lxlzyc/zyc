@@ -23,9 +23,11 @@
 		<div class="loginMaindiv">
 				<!-- 使用标签时不用写path---国际化 -->
 				<!-- 令牌机制 token -->
-				<s:form action="tokenAction.do"  method="post">
+				<s:form namespace="/new" action="tokenAction"  method="post">
 					<!-- 尽量别分开 标签-->
-					<s:textfield name="username" key="login.username"></s:textfield>
+					<!-- ${erroes.username[0]}取错误信息  （为了多选，所有的错误信息都是数组形式）（ps  在前端校验时  js上加载错误信息就可） -->
+					<!-- 或这种形式${erroes.["user.username"][0]} -->
+					<s:textfield name="username" key="login.username">${erroes.username[0]}</s:textfield>
 					<!-- 此表单验证token -->
 					<s:token></s:token>
 					<s:submit value="%{getText('login.submit')}"></s:submit>

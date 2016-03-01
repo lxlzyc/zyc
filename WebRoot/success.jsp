@@ -39,8 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 
 <body>
-	<% Userlogin ul = (Userlogin)session.getAttribute("userlogin"); %>
-	登录成功! 欢迎您<%=ul.getUsername() %>
+success
 </body>
  
 </html>
