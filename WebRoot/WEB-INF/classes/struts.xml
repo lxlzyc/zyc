@@ -2,7 +2,7 @@
 <!-- 提示用dtd -->
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<!-- 国际化（语言切换） -->
+	<!-- 国际化（语言切换1） -->
 	<constant name="struts.custom.i18n.resources" value="message"/>
 	<!-- 该标签用于创建一个javabean实例 <bean class=""></bean>-->
 	
