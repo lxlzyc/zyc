@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 提示用dtd -->
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 国际化（语言切换） -->
+	<constant name="struts.custom.i18n.resources" value="message"/>
+	<!-- 该标签用于创建一个javabean实例 <bean class=""></bean>-->
+	
+	
+	<!-- 该标签用于struts2默认行为标签 -->
+	<constant name="" value=""></constant>
+	<!-- 配置web默认编码集 -->
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<!-- 默认我们Struts的请求后缀是.action，-->
+	<constant name="struts.action.extension" value="do"></constant>
+	<!-- 设置浏览器是否缓存静态内容，默认值为true -->
+	<constant name="struts.serve.static.browerCache" value="false"></constant>
+	<!-- 当struts配置文件修改后，系统是否自动加载文件，默认为false -->
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<!-- 开发模式下可以打印出更加详细的错误 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 默认视图主题(基本样式)(改变默认样式为空) -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.ui.templateDir" value="template"></constant>
+	<constant name="struts.ui.templateSuffix" value="ftl"></constant>	
+	
+	<!-- 该标签 包标签用于区分不同的请求文件的标签 -->
+	<!-- name属性:包名 ,用于被别的包调用或继承
+		extends:继承哪个包 会继承该包下配置信息和拦截器等等
+		namespace:选填 url连接必须加入/new/action.xxx
+	-->
+	
+	<package name="test" namespace="/new" extends="struts-default">
+		<!-- 拦截器配置 -->
+		<interceptors>
+			<interceptor name="firstInterceptor" class="com.lxl.struts2Interceptor.FirstInterceptor">
+				<!-- 初始化拦截器中参数  可不写  name对应参数名 -->
+				<param name="loginName">admin</param>
+			</interceptor>
+			<!-- 类拦截器 -->
+			<interceptor name="methodInterceptor" class="com.lxl.struts2Interceptor.MethodInterceptor">
+				<!-- 拦截的方法名 -->
+				<param name="includeMethods">add,delete</param>
+				<!-- 不拦截的方法名 -->
+				<param name="excludeMethods">add,delete</param>
+			</interceptor>
+			<!-- 拦截器栈队集合 -->
+			<interceptor-stack name="allInterceptor">
+				<interceptor-ref name="firstInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 为所有类都添加拦截器 -->
+		<default-interceptor-ref name="allInterceptor"></default-interceptor-ref>
+		<!-- 全局的结果处理 -->
+		<global-results>
+			<result name="error">/jsp/error.jsp</result>
+		</global-results>
+		<!-- action相当于以前的servlet 
+			localhost:8080/项目名/new/login.do
+		-->
+		<action name="login" class="com.lxl.action.LoginAction" >
+			<!-- 设置访问action后跳转路径（action中return的值是result中的name） -->
+			<!-- 给此action添加拦截器  必须添加defaultStack拦截器（默认） -->
+			<interceptor-ref name="firstInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/success.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+		<action name="mlogin" class="com.lxl.action.MloginAction" >
+			<!-- 设置访问action后跳转路径（action中return的值是result中的name） -->
+			<!-- 拦截器栈队集合添加拦截器 -->
+			<interceptor-ref name="allInterceptor"></interceptor-ref>
+			<result name="success">/success.jsp</result>
+			<!-- 模型封装拦截器(运行action前运行) -->
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<!-- 默认拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
+		</action>
+		<action name="taglogin" class="com.lxl.action.TagLoginAction" >
+			<!-- 设置访问action后跳转路径（action中return的值是result中的name） -->
+			<result name="success">/success.jsp</result>
+			<!-- 模型封装拦截器(运行action前运行) -->
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<!-- 默认拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
+		</action>
+		<!-- 使用通配符解决调用方法问题  *指代全部方法 -->
+		<action name="wildcardMethodAction" class="com.lxl.action.WildcardMethodAction" method="{*}">
+			<result name="success">/success.jsp</result>
+		</action>
+			<!-- 国际化 -->
+		<action name="changeI18NAction" class="com.lxl.action.ChangeI18NAction">
+			<result name="success">/login-i18n.jsp</result>
+		</action>
+		<!-- token令牌 -->
+		<action name="tokenAction" class="com.lxl.action.TokenAction">
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/success.jsp</result>
+			<!-- 用于校验数据出错后执行跳转   xml配置校验信息时。在action类同一包下以 action名-validation.xml的形式配置 -->
+			<result name="input">/fail.jsp</result>
+			<result name="invalid.token">/token.jsp</result>
+		</action>
+	</package>
+	
+	
+	<!-- 该标签用于引入其他的xml配置文件 <include file="ss">
+	</include>-->
+		
+</struts>    

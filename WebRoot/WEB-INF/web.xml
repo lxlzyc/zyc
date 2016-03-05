@@ -6,13 +6,13 @@
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name></display-name>	
   
-  <!-- 数据源配置 -->
+  <!-- 数据源配置
   <resource-ref>
   	<description>DB Connection</description>
   	<res-ref-name>jdbc/mysql</res-ref-name>
   	<res-type>javax.sql.DataSource</res-type>
   	<res-auth>Container</res-auth>
-  </resource-ref>
+  </resource-ref> -->
   <!-- 配置session超时时间  默认30分钟 单位分钟 -->
   <session-config>
   	<session-timeout>5</session-timeout>

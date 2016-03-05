@@ -1,0 +1,11 @@
+hibernate  
+核心接口和工作机制  session接口
+session:
+线程不安全
+轻量级
+被成为hibernate的一级缓存
+由sessionfactory打开关闭
+与httpsession无关
+transaciton 接口  hibernate数据库事物接口
+Query接口
+Criteria接口
