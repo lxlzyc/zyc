@@ -34,6 +34,7 @@ public class TestForHibernate {
 		Userlogin us = new Userlogin();
 		us.setUserpassword("2");
 		
+		
 		try{
 			session.save(us);
 			tx.commit();
@@ -46,6 +47,7 @@ public class TestForHibernate {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		add();
 	}
 
 }
