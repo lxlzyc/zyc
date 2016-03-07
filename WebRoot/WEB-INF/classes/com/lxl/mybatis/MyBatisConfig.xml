@@ -6,9 +6,20 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-
+  <!-- 开启懒加载（用到sql才会执行，没用到不会执行） -->
+  <settings>
+  	<setting name="lazyLoadingEnadled" value="true"/>
+  	<setting name="aggressiveLazyLoading" value="false"/>
+  </settings>
+  
+  <typeAliases>
+  	<typeAlias alias="userlogin" type="com.lxl.vo.Userlogin" />
+  	<typeAlias alias="author" type="com.lxl.mybatis.Author" />
+  </typeAliases>
+  
   <environments default="development">
     <environment id="development">
+    <!-- 事物控制 -->
       <transactionManager type="JDBC">
       </transactionManager>
       <dataSource type="POOLED">
@@ -20,8 +31,13 @@
     </environment>
   </environments>
 
-  <mappers>
-	    <mapper resource="com/lxl/mybatis/Userlogin.xml"/>
-  </mappers>
 
+  <mappers>
+  		<!-- 加载资源文件 -->
+	    <mapper resource="com/lxl/mybatis/Userlogin.xml"/>
+	    <mapper resource="com/lxl/mybatis/Author.xml"/>
+	    <!-- 加载接口 -->
+	    <mapper class="com.lxl.mybatis.TestForMybatisDelete"/>
+  </mappers>
+  
 </configuration>

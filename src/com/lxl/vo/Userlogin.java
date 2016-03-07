@@ -15,12 +15,21 @@ public class Userlogin implements java.io.Serializable {
 	private String loginip;
 	private String bz1;
 	private String bz2;
+	
+
+	public Userlogin(String username, String userpassword) {
+		super();
+		this.username = username;
+		this.userpassword = userpassword;
+	}
+
 	private String bz3;
 
 	// Constructors
 
 	/** default constructor */
 	public Userlogin() {
+		super();
 	}
 
 	/** minimal constructor */

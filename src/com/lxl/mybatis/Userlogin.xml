@@ -6,10 +6,37 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="/">
-
+  <!-- 不一致是可以在此添加对应关系 -->
+  <resultMap id="userloginMap" type="userlogin">
+  	<id property="userid" column="userid"></id>
+  </resultMap>
   <select id="findById"  parameterType="int"  resultType="com.lxl.vo.Userlogin">
   	  select * from Userlogin where userid=#{userid}
   </select>
-
-
+  <!-- parameterType传入的数据类名 -->
+  <insert id="insertTest" parameterType="userlogin" statementType="PREPARED" 
+  	keyProperty="userid">
+      insert into Userlogin (username,userpassword) values (#{username},#{userpassword})
+  </insert>
+  
+  <update id="updateTest" parameterType="userlogin">
+      update Userlogin set username = #{username} where userid = #{userid}
+  </update>
+  <delete id="deleteTest" parameterType="userlogin">
+      delete from Userlogin where userid = #{userid}
+  </delete>
+  <select id="selectByHashmap"  parameterType="hashmap"  resultType="userlogin">
+  	  select * from Userlogin where username=#{username} and userpassword = #{userpassword}
+  </select>
+  <select id="selectSimple"  parameterType="userlogin"  resultType="userlogin">
+  	  select * from Userlogin where username=#{username} and userpassword = #{userpassword}
+  </select>
+  
+  <select id="selectList"  resultType="userlogin">
+  	  select * from Userlogin 
+  </select>
+  <!-- resultType 与resultMap  两者只有一个成立  resultMap解决复杂查询时的映射问题(按照resultmap设定返回)-->
+    <select id="selectList2"  resultMap="userloginMap">
+  	  select * from Userlogin 
+  </select>
 </mapper>
