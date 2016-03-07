@@ -15,6 +15,7 @@
   <typeAliases>
   	<typeAlias alias="userlogin" type="com.lxl.vo.Userlogin" />
   	<typeAlias alias="author" type="com.lxl.mybatis.Author" />
+  	<typeAlias alias="reader" type="com.lxl.mybatis.Reader" />
   </typeAliases>
   
   <environments default="development">
@@ -36,6 +37,7 @@
   		<!-- 加载资源文件 -->
 	    <mapper resource="com/lxl/mybatis/Userlogin.xml"/>
 	    <mapper resource="com/lxl/mybatis/Author.xml"/>
+	    <mapper resource="com/lxl/mybatis/Reader.xml"/>
 	    <!-- 加载接口 -->
 	    <mapper class="com.lxl.mybatis.TestForMybatisDelete"/>
   </mappers>

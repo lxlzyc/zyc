@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="/">
+<!-- if 
+money为空时返回全体对象
+ -->
+ <select id="readerSelect"  resultType="reader">
+  	  select * from reader
+  	  where 1=1
+  	  <if test="money!=null">
+  	  	and money>#{money}
+  	  </if>
+  </select>
+  <!-- choose标记(类似case) -->
+   <select id="readerSelect"  resultType="reader">
+  	  select * from reader
+  	  where 1=1
+  	  <choose>
+  	  	<when test="userId!=null">
+  	  		and userId = #{userId}
+  	  	</when>
+  	  	<when test="userId!=1">
+  	  		and 1=1
+  	  	</when>
+  	  	<otherwise>
+  	  		and 1!=1
+  	  	</otherwise>
+  	  </choose>
+  </select>
+  <!-- where只能判断逻辑运算符的加减 -->
+   <select id="readerSelect2"  resultType="reader">
+  	  select * from reader
+  	  where 
+  	  <where>
+  	   <if test="money!=null">
+  	  	and money>#{money}
+  	  </if>
+  	  </where>
+
+  </select>
+  <!-- set只能判断逗号 -->
+   <update id="updateTest" parameterType="userlogin">
+      update Userlogin 
+      <set>
+      	<if test="username!=null">username=#{username},</if>
+      	<if test="userpassword!=null">username=#{userpassword},</if>
+      </set>
+  </update>
+    <!-- trim  格式化标记
+    	内置属性
+    	prefix 前缀增加
+    	suffix 后缀增加
+     -->
+   <update id="updateTest" parameterType="userlogin">
+      update Userlogin 
+      <set>
+      	<if test="username!=null">username=#{username},</if>
+      	<if test="userpassword!=null">username=#{userpassword},</if>
+      </set>
+  </update>
+  <!-- foreach标记 -->
+  <!-- 
+  			 迭代结果                        list或数组序号              循环集合或制定类型                       开始符号                    元素分隔符                       关闭符号
+  	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+  		#{item}
+  	</foreach>
+   -->
+</mapper>
