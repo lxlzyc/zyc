@@ -7,7 +7,6 @@ package com.lxl.vo;
 public class Userlogin implements java.io.Serializable {
 
 	// Fields
-
 	private Integer userid;
 	private String username;
 	private String userpassword;
